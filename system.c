@@ -40,8 +40,5 @@ void ConfigureOscillator(void)
 {
     /* Disable Watch Dog Timer */
     RCONbits.SWDTEN = 0;
-    
-    /* Set OSCillatorControl NewOSCillator bits to FastRC*/
-//    OSCCONbits.NOSC = USE_INTERNAL_OSCILLATOR;
 
 }
