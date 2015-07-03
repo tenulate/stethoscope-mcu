@@ -8,9 +8,9 @@ dist/
 debug/
 Makefile
 
+nbproject/*
 # Include only these files from nbproject
-!nbproject/configuration.xml
+!nbproject/configurations.xml
 !nbproject/project.properties
 !nbproject/project.xml
 
-nbproject/*
