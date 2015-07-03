@@ -1,0 +1,16 @@
+# Don't use git to save zipped files
+*.zip
+*.tar
+
+# These MPLABX files are generated automaticaly
+build/
+dist/
+debug/
+Makefile
+
+# Include only these files from nbproject
+!nbproject/configuration.xml
+!nbproject/project.properties
+!nbproject/project.xml
+
+nbproject/*
