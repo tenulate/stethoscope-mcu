@@ -29,7 +29,7 @@ void InitApp(void)
     /* Initialize User Ports/Peripherals/Project here */
     
     /* Setup analog functionality and port direction */
-    TRISBbits.TRISB12 = OUTPUT_BIT; // Pin 23 output
+    LED_PIN_DIR = OUTPUT; // Pin 23 output
     /* Initialize peripherals */
     
     // Route UART1 TX through RP7 (pin 16)

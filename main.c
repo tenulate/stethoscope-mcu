@@ -45,9 +45,9 @@ int16_t main(void)
 
     while(INFINITE_LOOP)
     {
-        LATBbits.LATB12 = 0;    // set pin as low
-        __delay_ms(1000);
-        LATBbits.LATB12 = 1;    // set pin high
-        __delay_ms(1000);
+        LED_OFF;
+        __delay_ms(TIME_TO_WAIT);
+        LED_ON;
+        __delay_ms(TIME_TO_WAIT);
     }
 }
