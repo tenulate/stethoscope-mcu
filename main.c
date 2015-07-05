@@ -42,23 +42,10 @@ int16_t main(void)
 
     /* Initialize IO ports and peripherals */
     InitApp();
-    
-    // Configure PLL prescaler, PLL postscaler, PLL divisor
-    PLLFBD = 30;            // M = 32
-    CLKDIVbits.PLLPOST=0;   // N2 = 2
-    CLKDIVbits.PLLPRE=1;    // N1 = 3
-    // Initiate Clock Switch to Internal FRC with PLL (NOSC = 0b001)
-    __builtin_write_OSCCONH(0x01);
-    __builtin_write_OSCCONL(OSCCON | 0x01);
-    // Wait for Clock switch to occur
-    while (OSCCONbits.COSC != 0b001);
-    // Wait for PLL to lock
-    while(OSCCONbits.LOCK!=1) {};
 
-    while(1)
+    while(INFINITE_LOOP)
     {
         LATBbits.LATB12 = 0;    // set pin as low
-        // LATB = 0x00;
         __delay_ms(1000);
         LATBbits.LATB12 = 1;    // set pin high
         __delay_ms(1000);

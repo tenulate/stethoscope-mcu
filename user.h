@@ -11,6 +11,8 @@
 #define OFF = 0
 #define ON = 1
 
+#define INFINITE_LOOP 1
+
 // UART configs
 #define RP7_O RPOR3bits.RP7R
 #define U1TX 0b00011
