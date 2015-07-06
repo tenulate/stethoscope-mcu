@@ -20,6 +20,8 @@
       <itemPath>system.c</itemPath>
       <itemPath>traps.c</itemPath>
       <itemPath>user.c</itemPath>
+      <itemPath>ADC.h</itemPath>
+      <itemPath>ADC.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

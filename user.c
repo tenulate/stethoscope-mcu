@@ -14,26 +14,24 @@
 #endif
 
 #include <stdint.h>          // For uint16_t definition                       
-#include <stdbool.h>         // For true/false definition                     
-#include "user.h"            // variables/params used by user.c               
+#include <stdbool.h>         // For true/false definition                                    
 #include <pps.h>             // Make remapping peripherals eaiser
+#include "user.h"            // variables/params used by user.c
 
 /******************************************************************************/
 /* User Functions                                                             */
 /******************************************************************************/
 
-/* <Initialize variables in user.h and insert code for user algorithms.> */
-
 void InitApp(void)
 {
-    /* Initialize User Ports/Peripherals/Project here */
+    /* Initialize User Ports/Peripherals */
     
     /* Setup analog functionality and port direction */
-    LED_PIN_DIR = OUTPUT; // Pin 23 output
-    /* Initialize peripherals */
+    LED_PIN_DIR = OUTPUT;   // Pin 23 output
+    ADC_PIN_DIR = INPUT;    // Pin 2 input
     
     // Route UART1 TX through RP7 (pin 16)
-//    PPSUnLock;
+    // PPSUnLock;
     PPSOutput(OUT_FN_PPS_U1TX, OUT_PIN_PPS_RP7);
-//    PPSLock;
+    // PPSLock;
 }

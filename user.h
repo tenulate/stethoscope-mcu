@@ -9,6 +9,8 @@
 #define LED_PIN LATBbits.LATB12
 #define LED_PIN_DIR TRISBbits.TRISB12
 
+#define ADC_PIN_DIR TRISAbits.TRISA0
+
 /* Application specific user parameters used in user.c may go here */
 #define OUTPUT 0
 #define INPUT 1
@@ -31,6 +33,6 @@
 
 /* User level functions prototypes (i.e. InitApp) go here */
 
-void InitApp(void);         /* I/O and Peripheral Initialization */
+void InitApp(void);         // I/O and Peripheral Initialization
 
 #endif // USER_H

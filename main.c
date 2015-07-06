@@ -19,6 +19,7 @@
 
 #include "system.h"        /* System funct/params, like osc/peripheral config */
 #include "user.h"          /* User funct/params, such as InitApp              */
+#include "ADC.h"           /* Analog-to-Digital Conversion functs/params      */
 
 
 #include <libpic30.h>      /* Used for _delay_ms function  - must be included 
@@ -42,6 +43,7 @@ int16_t main(void)
 
     /* Initialize IO ports and peripherals */
     InitApp();
+    InitADC();
 
     while(INFINITE_LOOP)
     {
