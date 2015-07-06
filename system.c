@@ -40,6 +40,8 @@ void ConfigureOscillator(void)
 {
     /* Disable Watch Dog Timer */
     RCONbits.SWDTEN = 0;
+    
+    /* TODO: Write Clock set up in terms of MACROS and meaningful variables */
     // Configure PLL prescaler, PLL postscaler, PLL divisor
     PLLFBD = 30;            // M = 32
     CLKDIVbits.PLLPOST=0;   // N2 = 2
