@@ -10,6 +10,11 @@
 #define LED_PIN_DIR TRISBbits.TRISB12
 
 #define ADC_PIN_DIR TRISAbits.TRISA0
+#define ADC_PIN AD1PCFGLbits.PCFG0
+
+// Digital/Analog settings
+#define ANALOG 0
+#define DIGITAL 1
 
 /* Application specific user parameters used in user.c may go here */
 #define OUTPUT 0

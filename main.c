@@ -47,9 +47,17 @@ int16_t main(void)
 
     while(INFINITE_LOOP)
     {
-        LED_OFF;
-        __delay_ms(TIME_TO_WAIT);
-        LED_ON;
-        __delay_ms(TIME_TO_WAIT);
+        volatile uint16_t V_ADC = ADC1BUF0;
+        if (V_ADC >= 3)
+          {
+            LED_ON;
+          }
+        else
+          {
+            LED_OFF;
+            __delay_ms(TIME_TO_WAIT);
+            LED_ON;
+            __delay_ms(TIME_TO_WAIT);
+          }
     }
 }
