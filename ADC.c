@@ -24,7 +24,7 @@ void InitADC()
     
     // Control reg 3
     ADC_CLOCK_SOURCE = SYSTEM_CLOCK;
-    ADC_AUTO_SAMPLE_TIMING = 31;    // 31 Tad 
+    ADC_AUTO_SAMPLE_TIMING = 1;    // 1 Tad for sampling 
     ADC_CONVERSION_CLOCK = TAD_EQUAL_32_TCY;
     
     // Control reg 4
