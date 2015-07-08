@@ -19,6 +19,8 @@ void InitADC()
     ADC_SCAN_INPUTS = DONT_SCAN;
     ADC_CHANNEL_SELECT = ADC_CH0;
     INCREMENT_DMA_ADDRESS_AFTER_N_SAMPLES = 0;
+    ADC_BUFFER_FILL_MODE = START_ADDRESS_ALWAYS;
+    ADC_ALTERNATE_INPUT = ALWAYS_USE_A;
     
     // Control reg 3
     ADC_CLOCK_SOURCE = SYSTEM_CLOCK;
@@ -28,12 +30,9 @@ void InitADC()
     // Control reg 4
     ADC_DMA_BUFFER = ALLOCATE_16_WORD_PER_ANALOG_INPUT;
     
-    // TODO: Make MACRO definitions for these
-    AD1CHS0bits.CH0NB = 0;  // negative input CHB is Vrefl
-    AD1CHS0bits.CH0NA = 0;  // negative input CHA is Vrefl
-    AD1CHS0bits.CH0SB = 0;  // positive input CHB is AN0
-    AD1CHS0bits.CH0SA = 1;  // positive input CHA is AN1
-    AD1CSSLbits.CSS0 = 1;   // AN0 is scanned
+    // Input channel 0 select reg 
+    ADC_SAMPLE_A_NEGATIVE_INPUT = NEG_IN_VREFL;
+    ADC_SAMPLE_A_POSITIVE_INPUT = POS_IN_AN0;
     
     ENABLE_ADC; 
 }

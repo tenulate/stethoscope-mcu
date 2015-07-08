@@ -28,7 +28,7 @@
 #define U1TX 0b00011
 
 // LED config
-#define TIME_TO_WAIT 250
+#define TIME_TO_WAIT 150
 #define LED_OFF (LED_PIN = OFF)
 #define LED_ON (LED_PIN = ON)
 

@@ -45,10 +45,14 @@ int16_t main(void)
     InitApp();
     InitADC();
 
+    // Store ADC reading 
+    // Make it static so the Watch variables doesn't show "Out of Scope"
+    static uint16_t V_ADC = 0;
+
     while(INFINITE_LOOP)
     {
-        volatile uint16_t V_ADC = ADC1BUF0;
-        if (V_ADC >= 3)
+        V_ADC = ADC1BUF0;
+        if (V_ADC >= 0xc8)
           {
             LED_ON;
           }

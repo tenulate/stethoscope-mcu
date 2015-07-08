@@ -91,7 +91,7 @@
 
 // Alternate input sample mode
 #define ADC_ALTERNATE_INPUT AD1CON2bits.ALTS
-#define ALWAYS_USE_CHANNEL_INPUT_SELECTS_FOR_SAMPLE_A 0
+#define ALWAYS_USE_A 0
 #define USE_A_FIRST_THEN_B 1
 
 
@@ -190,10 +190,39 @@
 #define ALLOCATE_128_WORD_PER_ANALOG_INPUT 7
 
 /******************************************************************************/
+/* AD1CHS0 Register                                                           */
+/******************************************************************************/
+
+// Negative input select for sample A and B
+#define ADC_SAMPLE_A_NEGATIVE_INPUT AD1CHS0bits.CH0NA
+#define ADC_SAMPLE_B_NEGATIVE_INPUT AD1CHS0bits.CH0NB
+#define NEG_IN_AN1 1
+#define NEG_IN_VREFL 0
+
+// Positive input select for sample A and B
+#define ADC_SAMPLE_A_POSITIVE_INPUT AD1CHS0bits.CH0SA
+#define ADC_SAMPLE_B_POSITIVE_INPUT AD1CHS0bits.CH0SB
+#define POS_IN_AN0  0
+#define POS_IN_AN1  1
+#define POS_IN_AN2  2
+#define POS_IN_AN3  3
+#define POS_IN_AN4  4
+#define POS_IN_AN5  5
+#define POS_IN_AN6  6
+#define POS_IN_AN7  7
+#define POS_IN_AN8  8
+#define POS_IN_AN9  9
+#define POS_IN_AN10 10
+#define POS_IN_AN11 11
+#define POS_IN_AN12 12
+#define POS_IN_AN13 13
+#define POS_IN_AN14 14
+#define POS_IN_AN15 15
+
+/******************************************************************************/
 /* ADC Function Prototypes                                                    */
 /******************************************************************************/
 
 void InitADC(void);         // Analog-to-Digital conversion initialisation
 
 #endif	/* ADC_H */
-
