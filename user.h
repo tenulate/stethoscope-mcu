@@ -31,6 +31,7 @@
 #define TIME_TO_WAIT 150
 #define LED_OFF (LED_PIN = OFF)
 #define LED_ON (LED_PIN = ON)
+#define MIN_TIME 25             // min time to flash LED
 
 /******************************************************************************/
 /* User Function Prototypes                                                   */
@@ -39,5 +40,6 @@
 /* User level functions prototypes (i.e. InitApp) go here */
 
 void InitApp(void);         // I/O and Peripheral Initialization
+uint16_t v2time(uint16_t);  // translate voltage reading to time interval
 
 #endif // USER_H

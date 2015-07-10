@@ -48,20 +48,15 @@ int16_t main(void)
     // Store ADC reading 
     // Make it static so the Watch variables doesn't show "Out of Scope"
     static uint16_t V_ADC = 0;
+    static uint16_t time_to_wait = 0;
 
     while(INFINITE_LOOP)
     {
         V_ADC = ADC1BUF0;
-        if (V_ADC >= 0xc8)
-          {
-            LED_ON;
-          }
-        else
-          {
-            LED_OFF;
-            __delay_ms(TIME_TO_WAIT);
-            LED_ON;
-            __delay_ms(TIME_TO_WAIT);
-          }
+        time_to_wait = v2time(V_ADC);
+        LED_OFF;
+        __delay_ms(time_to_wait);
+        LED_ON;
+        __delay_ms(time_to_wait);
     }
 }
