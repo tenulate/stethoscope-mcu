@@ -19,7 +19,7 @@
 #include "system.h"        /* System funct/params, like osc/peripheral config */
 #include "user.h"          /* User funct/params, such as InitApp              */
 #include "ADC.h"           /* Analog-to-Digital Conversion functs/params      */
-
+#include "DMA.h"           /* Direct-Memory-Access funct/params               */
 
 #include <libpic30.h>      /* Used for _delay_ms function  - must be included 
                               after FCY has been defined (in system.h) */
