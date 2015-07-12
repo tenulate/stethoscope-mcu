@@ -10,22 +10,22 @@
    DMA interrupt is raised */
 #define NUM_SAMPLES 16
 // Enabling/disabling 
-#define DMA_ADC_ENABLE          DMA4CONbits.CHEN = 1
-#define DMA_ADC_DISABLE         DMA4CONbits.CHEN = 0
+#define DMA_ADC_ENABLE              DMA4CONbits.CHEN = 1
+#define DMA_ADC_DISABLE             DMA4CONbits.CHEN = 0
 // Transfer size
-#define DMA_ADC_DATA_TX_SIZE    DMA4CONbits.SIZE
+#define DMA_ADC_DATA_TX_SIZE        DMA4CONbits.SIZE
 // Transfer direction
-#define DMA_ADC_DATA_DIR        DMA4CONbits.DIR
+#define DMA_ADC_DATA_DIR            DMA4CONbits.DIR
 // Block transfer interrupt
-#define DMA_ADC_INTERRUPT_ON    DMA4CONbits.HALF
+#define DMA_ADC_INTERRUPT_CONDITION DMA4CONbits.HALF
 // Address mode
-#define DMA_ADC_ADDRESS_MODE    DMA4CONbits.AMODE
+#define DMA_ADC_ADDRESS_MODE        DMA4CONbits.AMODE
 // Channel operating mode
-#define DMA_ADC_CH_MODE         DMA4CONbits.MODE
+#define DMA_ADC_CH_MODE             DMA4CONbits.MODE
 
 // Interrupts
-#define DMA_ADC_INTERRUPT_FLAG  IFS2bits.DMA4IF
-#define DMA_ADC_INTERRUPT       IEC2bits.DMA4IE
+#define DMA_ADC_INTERRUPT_FLAG      IFS2bits.DMA4IF
+#define DMA_ADC_INTERRUPT           IEC2bits.DMA4IE
 
 /******************************************************************************/
 /* DMA Level #define Macros                                                   */
@@ -88,6 +88,6 @@
 /******************************************************************************/
 /* DMA Function Prototypes                                                    */
 /******************************************************************************/
-void initDMA4(void);
+void InitDMA4(void);
 
 #endif	/* DMA_H */

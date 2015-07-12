@@ -43,6 +43,7 @@ int16_t main(void)
     /* Initialize IO ports and peripherals */
     InitApp();
     InitADC();
+    InitDMA4();
 
     // Store ADC reading 
     // Make it static so the Watch variables doesn't show "Out of Scope"
