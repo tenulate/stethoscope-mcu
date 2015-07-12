@@ -23,9 +23,9 @@
 /* User Functions                                                             */
 /******************************************************************************/
 
-// Initialize User Ports/Peripherals 
+// Initialize User Ports/Peripherals
 void InitApp(void)
-{   
+{
     /* Setup analog functionality and port direction */
     LED_PIN_DIR = OUTPUT;   // Pin 23 output
     ADC_PIN_DIR = INPUT;    // Pin 2 input
