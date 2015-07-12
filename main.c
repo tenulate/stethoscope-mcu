@@ -49,14 +49,33 @@ int16_t main(void)
     // Make it static so the Watch variables doesn't show "Out of Scope"
     static uint16_t V_ADC = 0;
     static uint16_t time_to_wait = 0;
+    // DMA Buffer variables
+    extern uint16_t BufferA[NUM_SAMPLES];
+    extern uint16_t BufferB[NUM_SAMPLES];
+    extern int flag;
+    extern unsigned int DMA_buffer;
 
     while(INFINITE_LOOP)
     {
-        V_ADC = ADC1BUF0;
-        time_to_wait = v2time(V_ADC);
-        LED_OFF;
-        __delay_ms(time_to_wait);
-        LED_ON;
-        __delay_ms(time_to_wait);
+        if (flag)
+        {
+            
+            switch (DMA_buffer)
+            {
+                case BUFFER_A:
+                  V_ADC = BufferA[0];
+                  break;
+                case BUFFER_B:
+                  V_ADC = BufferB[0];
+                  break;
+            }
+            
+            time_to_wait = v2time(V_ADC);
+            LED_OFF;
+            __delay_ms(time_to_wait);
+            LED_ON;
+            __delay_ms(time_to_wait);
+            flag = 0;
+        }
     }
 }

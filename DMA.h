@@ -85,9 +85,14 @@
 #define ENABLE_INTERRUPT    1
 #define DISABLE_INTERRUPT   0
 
+/* DMA buffers */
+#define BUFFER_A            0
+#define BUFFER_B            1
+
 /******************************************************************************/
 /* DMA Function Prototypes                                                    */
 /******************************************************************************/
 void InitDMA4(void);
+void __attribute__((interrupt, no_auto_psv)) _DMA4Interrupt(void);
 
 #endif	/* DMA_H */

@@ -5,9 +5,13 @@
 #include <stdint.h>
 
 // Allocate memory for Buffer A and Buffer B in DMA memory
-uint16_t BufferA[NUM_SAMPLES] __attribute__((space(dma)));
-uint16_t BufferB[NUM_SAMPLES] __attribute__((space(dma)));
+uint16_t BufferA[NUM_SAMPLES] __attribute__((space(dma), aligned(64)));
+uint16_t BufferB[NUM_SAMPLES] __attribute__((space(dma), aligned(64)));
 
+/*******************************************************************************
+ * Initializes DMA Channel 4 to retrieve data from ADC in continuous ping-pong 
+ * mode. The ADC determines the data write addresses 
+ ******************************************************************************/
 void InitDMA4(void)
 {
     DMA_ADC_DATA_DIR = PERIPHERAL_TO_DMA;       // TX from ADC to DMA
@@ -28,4 +32,18 @@ void InitDMA4(void)
     DMA_ADC_INTERRUPT_FLAG = NO_INTERRUPT;
     DMA_ADC_INTERRUPT = ENABLE_INTERRUPT;
     DMA_ADC_ENABLE;
+}
+
+/*******************************************************************************
+ * Interrupt Service Routine (ISR) for DMA Channel 4
+*******************************************************************************/
+unsigned int DMA_buffer = BUFFER_B;
+int flag = 0;
+void __attribute__((interrupt, no_auto_psv)) _DMA4Interrupt(void)
+{
+    // Clear interrupt flag
+    DMA_ADC_INTERRUPT_FLAG = NO_INTERRUPT;
+    // Change the buffer to which we're storing ADC values
+    DMA_buffer = !DMA_buffer;
+    flag = 1;
 }
