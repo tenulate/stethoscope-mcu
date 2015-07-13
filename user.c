@@ -16,7 +16,6 @@
 #include <stdint.h>          // For uint16_t definition                       
 #include <stdbool.h>         // For true/false definition                                    
 #include <pps.h>
-#include <dsp.h>             // Make remapping peripherals eaiser
 #include "user.h"            // variables/params used by user.c
 
 /******************************************************************************/
