@@ -3,19 +3,8 @@
 /******************************************************************************/
 
 /* Device header file */
-#if defined(__XC16__)
-    #include <xc.h>
-#elif defined(__C30__)
-    #if defined(__dsPIC33E__)
-    	#include <p33Exxxx.h>
-    #elif defined(__dsPIC33F__)
-    	#include <p33Fxxxx.h>
-    #endif
-#endif
-
-
+#include <xc.h>
 #include <stdint.h>          /* For uint16_t definition                       */
-
 #include "system.h"          /* variables/params used by system.c             */
 
 /******************************************************************************/
@@ -39,12 +28,10 @@ void ConfigureOscillator(void)
 {
     /* Disable Watch Dog Timer */
     RCONbits.SWDTEN = 0;
-    
-    /* TODO: Write Clock set up in terms of MACROS and meaningful variables */
     // Configure PLL prescaler, PLL postscaler, PLL divisor
-    PLLFBD = 30;            // M = 32
-    CLKDIVbits.PLLPOST=0;   // N2 = 2
-    CLKDIVbits.PLLPRE=1;    // N1 = 3
+    PLLFBDbits.PLLDIV = M-2;        // PLL multiplying factor from Fref to Fvco
+    CLKDIVbits.PLLPOST = N2/2-1;    // PLL division factor from Fvco to Fosc
+    CLKDIVbits.PLLPRE= N1-2;        // PLL division from Fin to Fref
     // Initiate Clock Switch to Internal FRC with PLL (NOSC = 0b001)
     __builtin_write_OSCCONH(0x01);
     __builtin_write_OSCCONL(OSCCON | 0x01);
@@ -52,5 +39,4 @@ void ConfigureOscillator(void)
     while (OSCCONbits.COSC != 0b001);
     // Wait for PLL to lock
     while(OSCCONbits.LOCK!=1) {};
-
 }
