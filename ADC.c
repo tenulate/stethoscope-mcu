@@ -24,11 +24,11 @@ void InitADC()
     
     // Control reg 3
     ADC_CLOCK_SOURCE = SYSTEM_CLOCK;
-    ADC_AUTO_SAMPLE_TIMING = 1;    // 1 Tad for sampling 
-    ADC_CONVERSION_CLOCK = TAD_EQUAL_32_TCY;
+    ADC_AUTO_SAMPLE_TIMING = 6;    // 6 Tad for sampling 
+    ADC_CONVERSION_CLOCK = TAD_EQUAL_50_TCY;
     
     // Control reg 4
-    ADC_DMA_BUFFER = ALLOCATE_16_WORD_PER_ANALOG_INPUT;
+    ADC_DMA_BUFFER = ALLOCATE_8_WORD_PER_ANALOG_INPUT;
     
     // Input channel 0 select reg 
     ADC_SAMPLE_A_NEGATIVE_INPUT = NEG_IN_VREFL;
