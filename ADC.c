@@ -34,9 +34,5 @@ void InitADC()
     ADC_SAMPLE_A_NEGATIVE_INPUT = NEG_IN_VREFL;
     ADC_SAMPLE_A_POSITIVE_INPUT = POS_IN_AN0;
     
-    // Clear and disable ADC interrupts
-    IFS0bits.AD1IF = 0;
-    IEC0bits.AD1IE = 0;
-    
     ENABLE_ADC; 
 }
