@@ -40,14 +40,13 @@ int16_t main(void)
     // DMA Buffer variables
     extern uint16_t BufferA[NUM_SAMPLES];
     extern uint16_t BufferB[NUM_SAMPLES];
-    extern int flag;
+    extern int dma_flag;
     extern unsigned int DMA_buffer;
-
+    
     while(INFINITE_LOOP)
     {
-        if (flag)
+        if (dma_flag)
         {
-            
             switch (DMA_buffer)
             {
                 case BUFFER_A:
@@ -63,7 +62,7 @@ int16_t main(void)
             __delay_ms(time_to_wait);
             LED_ON;
             __delay_ms(time_to_wait);
-            flag = 0;
+            dma_flag = 0;
         }
     }
 }
