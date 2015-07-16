@@ -3,16 +3,7 @@
 /******************************************************************************/
 
 /* Device header file */
-#if defined(__XC16__)
-    #include <xc.h>
-#elif defined(__C30__)
-    #if defined(__dsPIC33E__)
-    	#include <p33Exxxx.h>
-    #elif defined(__dsPIC33F__)
-    	#include <p33Fxxxx.h>
-    #endif
-#endif
-
+#include <xc.h>
 #include <stdint.h>        /* Includes uint16_t definition   */
 
 /******************************************************************************/
