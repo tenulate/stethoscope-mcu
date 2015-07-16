@@ -11,6 +11,14 @@
 #define	ADC_H
 
 /*******************************************************************************
+ * ADC Interrupt Flags and registers
+ * ****************************************************************************/
+#define SET_ADC_INTERRUPT_FLAG IFS0bits.AD1IF = 1
+#define CLEAR_ADC_INTERRUPT_FLAG IFS0bits.AD1IF = 0
+#define ENABLE_ADC_INTERRUPT IEC0bits.AD1IE = 0
+#define DISABLE_ADC_INTERRUPT IEC0bits.AD1IE = 1
+
+/*******************************************************************************
  * AD1CON1 Register
  * ****************************************************************************/
 

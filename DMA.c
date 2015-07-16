@@ -1,5 +1,6 @@
 /* Direct Memory Access functionality */
 
+#include "ADC.h"
 #include "DMA.h"
 #include <xc.h>
 #include <stdint.h>
@@ -28,6 +29,10 @@ void InitDMA4(void)
     DMA4STA = __builtin_dmaoffset(BufferA);
     DMA4STB = __builtin_dmaoffset(BufferB);
 
+    // Disable ADC interrupts - let DMA take care of it
+    CLEAR_ADC_INTERRUPT_FLAG;
+    DISABLE_ADC_INTERRUPT;
+    
     // Clear interrupt flag bit and enable DMA4 interrupts
     DMA_ADC_INTERRUPT_FLAG = NO_INTERRUPT;
     DMA_ADC_INTERRUPT = ENABLE_INTERRUPT;
