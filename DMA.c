@@ -5,8 +5,8 @@
 #include <stdint.h>
 
 // Allocate memory for Buffer A and Buffer B in DMA memory
-uint16_t BufferA[NUM_SAMPLES] __attribute__((space(dma), aligned(32)));
-uint16_t BufferB[NUM_SAMPLES] __attribute__((space(dma), aligned(32)));
+uint16_t BufferA[NUM_SAMPLES] __attribute__((space(dma), aligned(256)));
+uint16_t BufferB[NUM_SAMPLES] __attribute__((space(dma), aligned(256)));
 
 /*******************************************************************************
  * Initializes DMA Channel 4 to retrieve data from ADC in continuous ping-pong 

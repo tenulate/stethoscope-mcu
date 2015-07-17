@@ -1,4 +1,5 @@
 #include "ADC.h"
+#include "DAC.h"
 #include <xc.h>
 
 void InitADC() 
@@ -28,7 +29,7 @@ void InitADC()
     ADC_CONVERSION_CLOCK = TAD_EQUAL_32_TCY;
     
     // Control reg 4
-    ADC_DMA_BUFFER = ALLOCATE_8_WORD_PER_ANALOG_INPUT;
+    ADC_DMA_BUFFER = ALLOCATE_128_WORD_PER_ANALOG_INPUT;
     
     // Input channel 0 select reg 
     ADC_SAMPLE_A_NEGATIVE_INPUT = NEG_IN_VREFL;
