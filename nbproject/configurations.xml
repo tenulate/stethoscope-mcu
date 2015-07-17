@@ -8,6 +8,7 @@
       <itemPath>user.h</itemPath>
       <itemPath>ADC.h</itemPath>
       <itemPath>DMA.h</itemPath>
+      <itemPath>DAC.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -24,6 +25,7 @@
       <itemPath>user.c</itemPath>
       <itemPath>ADC.c</itemPath>
       <itemPath>DMA.c</itemPath>
+      <itemPath>DAC.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

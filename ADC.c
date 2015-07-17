@@ -24,8 +24,8 @@ void InitADC()
     
     // Control reg 3
     ADC_CLOCK_SOURCE = SYSTEM_CLOCK;
-    ADC_AUTO_SAMPLE_TIMING = 6;    // 6 Tad for sampling 
-    ADC_CONVERSION_CLOCK = TAD_EQUAL_50_TCY;
+    ADC_AUTO_SAMPLE_TIMING = 4;    // 4 Tad for sampling 
+    ADC_CONVERSION_CLOCK = TAD_EQUAL_32_TCY;
     
     // Control reg 4
     ADC_DMA_BUFFER = ALLOCATE_8_WORD_PER_ANALOG_INPUT;
@@ -33,6 +33,10 @@ void InitADC()
     // Input channel 0 select reg 
     ADC_SAMPLE_A_NEGATIVE_INPUT = NEG_IN_VREFL;
     ADC_SAMPLE_A_POSITIVE_INPUT = POS_IN_AN0;
+    
+    // Disable ADC interrupts - let DMA take care of it
+    CLEAR_ADC_INTERRUPT_FLAG;
+    DISABLE_ADC_INTERRUPT;
     
     ENABLE_ADC; 
 }

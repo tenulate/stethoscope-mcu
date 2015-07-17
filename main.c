@@ -8,20 +8,10 @@
 #include "system.h"        /* System funct/params, like osc/peripheral config */
 #include "user.h"          /* User funct/params, such as InitApp              */
 #include "ADC.h"           /* Analog-to-Digital Conversion functs/params      */
+#include "DAC.h"           /* Digital-to-Analog Conversion functions          */
 #include "DMA.h"           /* Direct-Memory-Access funct/params               */
 #include <libpic30.h>      /* Used for _delay_ms function  - must be included 
                               after FCY has been defined (in system.h) */
-
-
-/******************************************************************************/
-/* Global Variable Declaration                                                */
-/******************************************************************************/
-
-/* i.e. uint16_t <variable_name>; */
-
-/******************************************************************************/
-/* Main Program                                                               */
-/******************************************************************************/
 
 int16_t main(void)
 {
@@ -31,37 +21,34 @@ int16_t main(void)
     /* Initialize IO ports and peripherals */
     InitApp();
     InitADC();
+    InitDAC();
     InitDMA4();
 
-    // Store ADC reading 
-    // Make it static so the Watch variables doesn't show "Out of Scope"
-    static uint16_t V_ADC = 0;
-    static uint16_t time_to_wait = 0;
     // DMA Buffer variables
     extern uint16_t BufferA[NUM_SAMPLES];
     extern uint16_t BufferB[NUM_SAMPLES];
     extern int dma_flag;
     extern unsigned int DMA_buffer;
+    int i;
     
     while(INFINITE_LOOP)
     {
         if (dma_flag)
         {
-            switch (DMA_buffer)
+            for (i=0; i<NUM_SAMPLES; i++)
             {
-                case BUFFER_A:
-                  V_ADC = BufferA[0];
-                  break;
-                case BUFFER_B:
-                  V_ADC = BufferB[0];
-                  break;
+                while(DAC1STATbits.REMPTY != 1);    // Wait D/A conversion
+                if (DMA_buffer == BUFFER_A)
+                  /* Have to shift BufferA result 4 bits left b/c ADC stores
+                   * data in unsigned int form that ranges from 
+                   * 0x0000 to 0x0FFF
+                   * While the DAC data takes unsigned ints from
+                   * 0x0000 to 0xFFFF
+                   */
+                  DAC1RDAT = BufferA[i]<<4;
+                else
+                  DAC1RDAT = BufferB[i]<<4;
             }
-            
-            time_to_wait = v2time(V_ADC);
-            LED_OFF;
-            __delay_ms(time_to_wait);
-            LED_ON;
-            __delay_ms(time_to_wait);
             dma_flag = 0;
         }
     }
