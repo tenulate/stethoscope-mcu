@@ -220,6 +220,10 @@
 #define SET_DAC_RIGHT_CH_INTERRUPT_FLAG     IFS4bits.DAC1RIF = 1;
 #define CLEAR_DAC_LEFT_CH_INTERRUPT_FLAG    IFS4bits.DAC1LIF = 0;
 #define SET_DAC_LEFT_CH_INTERRUPT_FLAG      IFS4bits.DAC1LIF = 1;
+#define ENABLE_DAC_RIGHT_CH_INTERRUPT       IEC4bits.DAC1RIE = 1;
+#define DISABLE_DAC_RIGHT_CH_INTERRUPT      IEC4bits.DAC1RIE = 0;
+#define ENABLE_DAC_LEFT_CH_INTERRUPT        IEC4bits.DAC1LIE = 1;
+#define DISABLE_DAC_LEFT_CH_INTERRUPT       IEC4bits.DAC1LIE = 0;
 
 /*******************************************************************************
  * DAC Function Prototypes
