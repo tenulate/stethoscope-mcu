@@ -13,7 +13,7 @@
 #include <libpic30.h>      /* Used for _delay_ms function  - must be included 
                               after FCY has been defined (in system.h) */
 
-int16_t main(void)
+int main(void)
 {
     /* Configure the oscillator for the device */
     ConfigureOscillator();
