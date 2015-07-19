@@ -17,7 +17,7 @@ void InitDMA4(void)
     DMA_ADC_DATA_DIR = PERIPHERAL_TO_DMA;       // TX from ADC to DMA
     DMA_ADC_DATA_TX_SIZE = DMA_WORD;            // transfer 16 bits of data
     DMA_ADC_INTERRUPT_CONDITION = WHEN_ALL_DATA_MOVED;
-    DMA_ADC_ADDRESS_MODE = PERIPHERAL_INDIRECT; // ADC takes care of addressing
+    DMA_ADC_ADDRESS_MODE = POST_INCREMENT;      // DMA takes care of addressing
     DMA_ADC_CH_MODE = CONTINUOUS_PING_PONG;     // 2 buffers to write to
 
     DMA4PAD = (int)&ADC1BUF0;   // Transfer data from ADC buffer
