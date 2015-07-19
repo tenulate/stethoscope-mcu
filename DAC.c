@@ -20,5 +20,5 @@ void InitDAC(void)
 
 void __attribute__((interrupt, no_auto_psv)) _DAC1RInterrupt(void)
 {
-  IFS4bits.DAC1RIF = 0; // Clear Riht Channel Interrupt Flag
+  CLEAR_DAC_RIGHT_CH_INTERRUPT_FLAG;
 }
