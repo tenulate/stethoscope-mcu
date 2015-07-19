@@ -76,3 +76,12 @@ void InitDMA5(void)
     DMA_DAC_INTERRUPT = ENABLE_INTERRUPT;
     DMA_DAC_ENABLE;
 }
+
+/*******************************************************************************
+ * Interrupt Service Routine (ISR) for DMA Channel 5
+ ******************************************************************************/
+void __attribute__((interrupt, no_auto_psv)) _DMA5Interrupt(void)
+{
+    // Clear interrupt flag
+    DMA_DAC_INTERRUPT_FLAG = NO_INTERRUPT;
+}
