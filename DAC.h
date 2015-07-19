@@ -202,7 +202,7 @@
 #define DAC_LEFT_INTERRUPT_TYPE     DAC1STATbits.LITYPE
 #define DAC_RIGHT_INTERRUPT_TYPE    DAC1STATbits.RITYPE
 #define FIFO_EMPTY                  1
-#define FIFO_FULL                   0
+#define FIFO_NOT_FULL               0
 
 /******************************************************************************/
 /* DAC1 Default and output data registers                                     */
