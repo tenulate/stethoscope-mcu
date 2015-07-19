@@ -23,10 +23,30 @@
 #define DMA_ADC_ADDRESS_MODE        DMA4CONbits.AMODE
 // Channel operating mode
 #define DMA_ADC_CH_MODE             DMA4CONbits.MODE
-
 // Interrupts
 #define DMA_ADC_INTERRUPT_FLAG      IFS2bits.DMA4IF
 #define DMA_ADC_INTERRUPT           IEC2bits.DMA4IE
+
+/******************************************************************************
+ * DMA to DAC SETTINGS
+ ******************************************************************************/
+
+// Enabling/disabling
+#define DMA_DAC_ENABLE              DMA5CONbits.CHEN = 1
+#define DMA_DAC_DISABLE             DMA5CONbits.CHEN = 0
+// Transfer size
+#define DMA_DAC_DATA_TX_SIZE        DMA5CONbits.SIZE
+// Transfer direction
+#define DMA_DAC_DATA_DIR            DMA5CONbits.DIR
+// Block transfer interrupt
+#define DMA_DAC_INTERRUPT_CONDITION DMA5CONbits.HALF
+// Address mode
+#define DMA_DAC_ADDRESS_MODE        DMA5CONbits.AMODE
+// Channel operating mode
+#define DMA_DAC_CH_MODE             DMA5CONbits.MODE
+// Interrupts
+#define DMA_DAC_INTERRUPT_FLAG      IFS3bits.DMA5IF
+#define DMA_DAC_INTERRUPT           IEC3bits.DMA5IE
 
 /*******************************************************************************
  * DMA Level #define Macros
@@ -94,6 +114,7 @@
  * DMA Function Prototypes
  ******************************************************************************/
 void InitDMA4(void);
+void InitDMA5(void);
 void __attribute__((interrupt, no_auto_psv)) _DMA4Interrupt(void);
 
 #endif	/* DMA_H */

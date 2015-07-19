@@ -9,8 +9,8 @@ uint16_t BufferA[NUM_SAMPLES] __attribute__((space(dma), aligned(256)));
 uint16_t BufferB[NUM_SAMPLES] __attribute__((space(dma), aligned(256)));
 
 /*******************************************************************************
- * Initializes DMA Channel 4 to retrieve data from ADC in continuous ping-pong 
- * mode. The ADC determines the data write addresses 
+ * Initialise DMA Channel 4 to retrieve data from ADC in continuous ping-pong
+ * mode
  ******************************************************************************/
 void InitDMA4(void)
 {
@@ -20,7 +20,7 @@ void InitDMA4(void)
     DMA_ADC_ADDRESS_MODE = POST_INCREMENT;      // DMA takes care of addressing
     DMA_ADC_CH_MODE = CONTINUOUS_PING_PONG;     // 2 buffers to write to
 
-    DMA4PAD = (int)&ADC1BUF0;   // Transfer data from ADC buffer
+    DMA4PAD = (volatile unsigned int)&ADC1BUF0; // Transfer data from ADC buffer
     DMA4CNT = NUM_SAMPLES-1;    // Raise DMA interrupt after every NUM_SAMPLES
     DMA4REQ = DMA_IRQ_ADC1;     // ADC interrupt selected for DMA IRQ
 
@@ -49,4 +49,30 @@ void __attribute__((interrupt, no_auto_psv)) _DMA4Interrupt(void)
     else
       DMA_buffer = BUFFER_A;
     dma_flag = 1;
+}
+
+/*******************************************************************************
+ * Initialise DMA Channel 5 to transfer data from memory to DAC Right channel
+ * peripheral
+ ******************************************************************************/
+void InitDMA5(void)
+{
+    DMA_DAC_DATA_DIR = DMA_TO_PERIPHERAL;       // TX from ADC to DMA
+    DMA_DAC_DATA_TX_SIZE = DMA_WORD;            // transfer 16 bits of data
+    DMA_DAC_INTERRUPT_CONDITION = WHEN_ALL_DATA_MOVED;
+    DMA_DAC_ADDRESS_MODE = POST_INCREMENT;      // DMA takes care of addressing
+    DMA_DAC_CH_MODE = CONTINUOUS_PING_PONG;     // 2 buffers to write to
+
+    DMA5PAD = (volatile unsigned int)&DAC1RDAT; // Transfer data to DAC FIFO
+    DMA5CNT = NUM_SAMPLES-1;      // Raise DMA interrupt after every NUM_SAMPLES
+    DMA5REQ = DMA_IRQ_DAC1_RIGHT; // DAC interrupt selected for DMA IRQ
+
+    // DMA controller needs to know where in DMA memory BufferA and B start
+    DMA5STA = __builtin_dmaoffset(BufferA);
+    DMA5STB = __builtin_dmaoffset(BufferB);
+
+    // Clear interrupt flag bit and enable DMA4 interrupts
+    DMA_DAC_INTERRUPT_FLAG = NO_INTERRUPT;
+    DMA_DAC_INTERRUPT = ENABLE_INTERRUPT;
+    DMA_DAC_ENABLE;
 }
