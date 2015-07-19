@@ -1,17 +1,13 @@
-/******************************************************************************/
-/* Files to Include                                                           */
-/******************************************************************************/
-
 /* Device header file */
 #include <xc.h>
-#include <stdint.h>        /* Includes uint16_t definition                    */
-#include "system.h"        /* System funct/params, like osc/peripheral config */
-#include "user.h"          /* User funct/params, such as InitApp              */
-#include "ADC.h"           /* Analog-to-Digital Conversion functs/params      */
-#include "DAC.h"           /* Digital-to-Analog Conversion functions          */
-#include "DMA.h"           /* Direct-Memory-Access funct/params               */
+#include <stdint.h>        // Includes uint16_t definition
+#include "system.h"        // System funct/params, like osc/peripheral config
+#include "user.h"          // User funct/params, such as InitApp
+#include "ADC.h"           // Analog-to-Digital Conversion functs/params
+#include "DAC.h"           // Digital-to-Analog Conversion functions
+#include "DMA.h"           // Direct-Memory-Access funct/params
 #include <libpic30.h>      /* Used for _delay_ms function  - must be included 
-                              after FCY has been defined (in system.h) */
+                            * after FCY has been defined (in system.h) */
 
 int main(void)
 {

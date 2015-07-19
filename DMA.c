@@ -36,7 +36,7 @@ void InitDMA4(void)
 
 /*******************************************************************************
  * Interrupt Service Routine (ISR) for DMA Channel 4
-*******************************************************************************/
+ ******************************************************************************/
 unsigned int DMA_buffer = BUFFER_B;
 int dma_flag = 0;
 void __attribute__((interrupt, no_auto_psv)) _DMA4Interrupt(void)

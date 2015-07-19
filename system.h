@@ -1,6 +1,6 @@
-/******************************************************************************/
-/* System Level #define Macros                                                */
-/******************************************************************************/
+/*******************************************************************************
+ * System Level #define Macros
+ ******************************************************************************/
 
 // clock settings                 
 #define M 65                        // PLL multiplying factor from Fref to Fvco
@@ -9,9 +9,9 @@
 #define SYS_FREQ    79841667L       // Fosc = Fin*M/N1/N2, Fin = 7.37MHz
 #define FCY         SYS_FREQ/2      // Instruction clock frequency
  
-/******************************************************************************/
-/* System Function Prototypes                                                 */
-/******************************************************************************/
+/*******************************************************************************
+ * System Function Prototypes
+ ******************************************************************************/
 
 /* Custom oscillator configuration funtions, reset source evaluation
 functions, and other non-peripheral microcontroller initialization functions

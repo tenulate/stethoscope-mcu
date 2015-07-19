@@ -2,6 +2,9 @@
 #include "DAC.h"
 #include <xc.h>
 
+/*******************************************************************************
+ * Initialise Analog-to-Digital converter unit
+ ******************************************************************************/
 void InitADC() 
 {
     DISABLE_ADC;    // To change configuration
