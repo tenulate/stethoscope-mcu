@@ -113,8 +113,9 @@
 /*******************************************************************************
  * DMA Function Prototypes
  ******************************************************************************/
-void InitDMA4(void);
-void InitDMA5(void);
+void InitADC_DMA(void);
+void InitDAC_DMA(void);
 void __attribute__((interrupt, no_auto_psv)) _DMA4Interrupt(void);
+void __attribute__((interrupt, no_auto_psv)) _DMA5Interrupt(void);
 
 #endif	/* DMA_H */

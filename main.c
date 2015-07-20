@@ -18,7 +18,7 @@ int main(void)
     InitApp();
     InitADC();
     InitDAC();
-    InitDMA4();
+    InitADC_DMA();
 
     // DMA Buffer variables
     extern uint16_t BufferA[NUM_SAMPLES];
@@ -34,16 +34,15 @@ int main(void)
             for (i=0; i<NUM_SAMPLES; i++)
             {
                 while(DAC1STATbits.REMPTY != 1);    // Wait D/A conversion
-                if (DMA_buffer == BUFFER_A)
-                  /* Have to shift BufferA result 4 bits left b/c ADC stores
-                   * data in unsigned int form that ranges from 
-                   * 0x0000 to 0x0FFF
-                   * While the DAC data takes unsigned ints from
-                   * 0x0000 to 0xFFFF
-                   */
-                  DAC1RDAT = BufferA[i]<<4;
-                else
-                  DAC1RDAT = BufferB[i]<<4;
+                    if (DMA_buffer == BUFFER_A)
+                        // Have to shift BufferA result 4 bits left b/c ADC stores
+                        // data in unsigned int form that ranges from 
+                        // 0x0000 to 0x0FFF
+                        // While the DAC data takes unsigned ints from
+                        // 0x0000 to 0xFFFF
+                        DAC1RDAT = BufferA[i]<<4;
+                    else
+                        DAC1RDAT = BufferB[i]<<4;
             }
             dma_flag = 0;
         }

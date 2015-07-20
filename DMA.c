@@ -12,7 +12,7 @@ uint16_t BufferB[NUM_SAMPLES] __attribute__((space(dma), aligned(256)));
  * Initialise DMA Channel 4 to retrieve data from ADC in continuous ping-pong
  * mode
  ******************************************************************************/
-void InitDMA4(void)
+void InitADC_DMA(void)
 {
     DMA_ADC_DATA_DIR = PERIPHERAL_TO_DMA;       // TX from ADC to DMA
     DMA_ADC_DATA_TX_SIZE = DMA_WORD;            // transfer 16 bits of data
@@ -54,8 +54,10 @@ void __attribute__((interrupt, no_auto_psv)) _DMA4Interrupt(void)
 /*******************************************************************************
  * Initialise DMA Channel 5 to transfer data from memory to DAC Right channel
  * peripheral
+ * Don't bother with this!
+ *  couldn't get it working with ADC DMA (Marko 20/07/2015)
  ******************************************************************************/
-void InitDMA5(void)
+void InitDAC_DMA(void)
 {
     DMA_DAC_DATA_DIR = DMA_TO_PERIPHERAL;       // TX from ADC to DMA
     DMA_DAC_DATA_TX_SIZE = DMA_WORD;            // transfer 16 bits of data
@@ -68,8 +70,8 @@ void InitDMA5(void)
     DMA5REQ = DMA_IRQ_DAC1_RIGHT; // DAC interrupt selected for DMA IRQ
 
     // DMA controller needs to know where in DMA memory BufferA and B start
-    DMA5STA = __builtin_dmaoffset(BufferA);
-    DMA5STB = __builtin_dmaoffset(BufferB);
+    DMA5STA = __builtin_dmaoffset(BufferB);
+    DMA5STB = __builtin_dmaoffset(BufferA);
 
     // Clear interrupt flag bit and enable DMA4 interrupts
     DMA_DAC_INTERRUPT_FLAG = NO_INTERRUPT;
