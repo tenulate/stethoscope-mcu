@@ -3,10 +3,11 @@
 #include "DMA.h"
 #include <xc.h>
 #include <stdint.h>
+#include <dsp.h>
 
 // Allocate memory for Buffer A and Buffer B in DMA memory
-uint16_t BufferA[NUM_SAMPLES] __attribute__((space(dma), aligned(256)));
-uint16_t BufferB[NUM_SAMPLES] __attribute__((space(dma), aligned(256)));
+fractional BufferA[NUM_SAMPLES] __attribute__((space(dma), aligned(256)));
+fractional BufferB[NUM_SAMPLES] __attribute__((space(dma), aligned(256)));
 
 /*******************************************************************************
  * Initialise DMA Channel 4 to retrieve data from ADC in continuous ping-pong
