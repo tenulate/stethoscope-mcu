@@ -31,7 +31,7 @@
 
 /* User level functions prototypes (i.e. InitApp) go here */
 
-void InitApp(void);         // I/O and Peripheral Initialization
+void initApp(void);         // I/O and Peripheral Initialization
 uint16_t v2time(uint16_t);  // translate voltage reading to time interval
 
 #endif // USER_H

@@ -12,13 +12,13 @@
 int main(void)
 {
     /* Configure the oscillator for the device */
-    ConfigureOscillator();
+    configureOscillator();
 
     /* Initialize IO ports and peripherals */
-    InitApp();
-    InitADC();
-    InitDAC();
-    InitADC_DMA();
+    initApp();
+    initADC();
+    initDAC();
+    initADC_DMA();
 
     // DMA Buffer variables
     extern uint16_t BufferA[NUM_SAMPLES];

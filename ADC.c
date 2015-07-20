@@ -4,7 +4,7 @@
 /*******************************************************************************
  * Initialise Analog-to-Digital converter unit
  ******************************************************************************/
-void InitADC() 
+void initADC() 
 {
     DISABLE_ADC;    // To change configuration
     

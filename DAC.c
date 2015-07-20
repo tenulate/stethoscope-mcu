@@ -1,7 +1,7 @@
 #include <xc.h>
 #include "DAC.h"
 
-void InitDAC(void)
+void initDAC(void)
 {
   DISABLE_DAC;
   

@@ -12,7 +12,7 @@ uint16_t BufferB[NUM_SAMPLES] __attribute__((space(dma), aligned(256)));
  * Initialise DMA Channel 4 to retrieve data from ADC in continuous ping-pong
  * mode
  ******************************************************************************/
-void InitADC_DMA(void)
+void initADC_DMA(void)
 {
     DMA_ADC_DATA_DIR = PERIPHERAL_TO_DMA;       // TX from ADC to DMA
     DMA_ADC_DATA_TX_SIZE = DMA_WORD;            // transfer 16 bits of data
@@ -57,7 +57,7 @@ void __attribute__((interrupt, no_auto_psv)) _DMA4Interrupt(void)
  * Don't bother with this!
  *  couldn't get it working with ADC DMA (Marko 20/07/2015)
  ******************************************************************************/
-void InitDAC_DMA(void)
+void initDAC_DMA(void)
 {
     DMA_DAC_DATA_DIR = DMA_TO_PERIPHERAL;       // TX from ADC to DMA
     DMA_DAC_DATA_TX_SIZE = DMA_WORD;            // transfer 16 bits of data

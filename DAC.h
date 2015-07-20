@@ -229,7 +229,7 @@
  * DAC Function Prototypes
  ******************************************************************************/
 
-void InitDAC(void);
+void initDAC(void);
 
 #endif	/* DAC_H */
 

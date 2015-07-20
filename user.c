@@ -7,7 +7,7 @@
 /*******************************************************************************
  * Initialize User Ports/Peripherals
 *******************************************************************************/
-void InitApp(void)
+void initApp(void)
 {
     /* Setup analog functionality and port direction */
     LED_PIN_DIR = OUTPUT;   // Pin 23 output

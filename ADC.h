@@ -222,6 +222,6 @@
  * ADC Function Prototypes
  ******************************************************************************/
 
-void InitADC(void);         // Analog-to-Digital conversion initialisation
+void initADC(void);         // Analog-to-Digital conversion initialisation
 
 #endif	/* ADC_H */

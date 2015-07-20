@@ -24,7 +24,7 @@ Refer to the C Compiler for PIC24 MCUs and dsPIC DSCs User Guide in the
 compiler installation directory /doc folder for documentation on the
 __builtin functions.*/
 
-void ConfigureOscillator(void)
+void configureOscillator(void)
 {
     /* Disable Watch Dog Timer */
     RCONbits.SWDTEN = 0;
