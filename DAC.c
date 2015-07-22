@@ -17,6 +17,9 @@ void initDAC(void)
   DAC_CLK = AUX_OUT_DIV_BY_9;
   DAC_DATA_FORMAT = DAC_SIGNED_INT;
   DAC_OUTPUT_AMPLIFIER = DAC_DISABLE_WHILE_SLEEP;
+  // Fs(DAC) = Fcy / (64*APSTSCLR*DACFDIV)
+  //         = (79841667/2) / (64*9*1)
+  //         = 69.307 kHz
   
   // Disable DAC interrupts - let DMA take care of it
   CLEAR_DAC_RIGHT_CH_INTERRUPT_FLAG;

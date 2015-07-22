@@ -27,8 +27,15 @@ void initADC()
     
     // Control reg 3
     ADC_CLOCK_SOURCE = SYSTEM_CLOCK;
-    ADC_AUTO_SAMPLE_TIMING = 4;    // 4 Tad for sampling 
+    ADC_AUTO_SAMPLE_TIMING = 4;    // 4 Tad for sampling
     ADC_CONVERSION_CLOCK = TAD_EQUAL_32_TCY;
+    // Sampling time            = 4 Tad
+    // Conversion time (12 bit) = 14 Tad
+    // Tad                      = 32 Tcy = 64 Tosc
+    // Total samp/conv time ADC = 18 Tad
+    //                          = 18 * 32 * Tcy
+    // Fs(ADC)                  = 1/(18*32*Tcy)
+    //                          = Fcy/(18*32) = 79841667/2 /(18*32) = 69.307 kHz
     
     // Control reg 4
     ADC_DMA_BUFFER = ALLOCATE_128_WORD_PER_ANALOG_INPUT;
