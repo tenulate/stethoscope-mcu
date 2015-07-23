@@ -30,6 +30,7 @@ int main(void)
     
     while(INFINITE_LOOP)
     {
+        LED_ON;
         if (adc_finished)
         {
             for (i=0; i<NUM_SAMPLES; i++)

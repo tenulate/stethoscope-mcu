@@ -2,11 +2,12 @@
 #define USER_H
 
 // Map MCU pins to logical names
-#define LED_PIN             LATBbits.LATB12
-#define LED_PIN_DIR         TRISBbits.TRISB12
+#define LED_PIN             LATBbits.LATB14
+#define LED_PIN_DIR         TRISBbits.TRISB14
+#define LED_PIN_MODE        AD1PCFGLbits.PCFG10
 
 #define ADC_PIN_DIR         TRISAbits.TRISA0
-#define ADC_PIN             AD1PCFGLbits.PCFG0
+#define ADC_PIN_MODE        AD1PCFGLbits.PCFG0
 
 // Digital/Analog settings
 #define ANALOG              0
@@ -32,6 +33,6 @@
 /* User level functions prototypes (i.e. InitApp) go here */
 
 void initApp(void);         // I/O and Peripheral Initialization
-uint16_t v2time(uint16_t);  // translate voltage reading to time interval
+unsigned int v2time(unsigned int);  // translate voltage reading to time interval
 
 #endif // USER_H

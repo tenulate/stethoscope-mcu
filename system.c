@@ -4,7 +4,6 @@
 
 /* Device header file */
 #include <xc.h>
-#include <stdint.h>          /* For uint16_t definition                       */
 #include "system.h"          /* variables/params used by system.c             */
 
 /******************************************************************************/
