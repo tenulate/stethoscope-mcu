@@ -2,7 +2,6 @@
 
 #include "DMA.h"
 #include <xc.h>
-#include <stdint.h>
 #include <dsp.h>
 
 // Allocate memory for Buffer A and Buffer B in DMA memory
@@ -39,7 +38,7 @@ void initADC_DMA(void)
  * Interrupt Service Routine (ISR) for DMA Channel 4
  ******************************************************************************/
 unsigned int DMA_buffer = BUFFER_B;
-int dma_flag = 0;
+int adc_finished = 0;
 void __attribute__((interrupt, no_auto_psv)) _DMA4Interrupt(void)
 {
     // Clear interrupt flag
@@ -49,7 +48,7 @@ void __attribute__((interrupt, no_auto_psv)) _DMA4Interrupt(void)
       DMA_buffer = BUFFER_B;
     else
       DMA_buffer = BUFFER_A;
-    dma_flag = 1;
+    adc_finished = 1;
 }
 
 /*******************************************************************************

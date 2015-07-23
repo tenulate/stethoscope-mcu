@@ -24,13 +24,13 @@ int main(void)
     // DMA Buffer variables
     extern fractional BufferA[NUM_SAMPLES];
     extern fractional BufferB[NUM_SAMPLES];
-    extern int dma_flag;
+    extern int adc_finished;
     extern unsigned int DMA_buffer;
     int i;
     
     while(INFINITE_LOOP)
     {
-        if (dma_flag)
+        if (adc_finished)
         {
             for (i=0; i<NUM_SAMPLES; i++)
             {
@@ -40,7 +40,7 @@ int main(void)
                     else
                         DAC1RDAT = BufferB[i];
             }
-            dma_flag = 0;
+            adc_finished = 0;
         }
     }
 }
