@@ -6,6 +6,7 @@
 #include "ADC.h"           // Analog-to-Digital Conversion functs/params
 #include "DAC.h"           // Digital-to-Analog Conversion functions
 #include "DMA.h"           // Direct-Memory-Access funct/params
+#include "FIR.h"           // Filter coefficients
 #include <libpic30.h>      /* Used for _delay_ms function  - must be included 
                             * after FCY has been defined (in system.h) */
 #include <dsp.h>
@@ -28,6 +29,14 @@ int main(void)
     extern unsigned int DMA_buffer;
     int i;
     
+    // Set up filtering
+    extern fractional coefficients[FILTER_ORDER];
+    extern fractional xdelay[FILTER_ORDER];
+    extern fractional output_signal[NUM_SAMPLES];
+    FIRStruct FIRfilter;
+    FIRStructInit(&FIRfilter, FILTER_ORDER, coefficients, 0xFF00, xdelay);
+    FIRDelayInit(&FIRfilter);
+    
     while(INFINITE_LOOP)
     {
         LED_ON;
@@ -35,11 +44,17 @@ int main(void)
         {
             for (i=0; i<NUM_SAMPLES; i++)
             {
-                while(DAC1STATbits.REMPTY != 1);    // Wait D/A conversion
+                while(!DAC_RIGHT_CH_EMPTY);    // Wait D/A conversion
                     if (DMA_buffer == BUFFER_A)
-                        DAC1RDAT = BufferA[i];
+                    {
+                        FIR(NUM_SAMPLES, &output_signal[0], &BufferA[0], &FIRfilter);
+                        DAC_RIGHT_CH_OUT = BufferA[i];
+                    }
                     else
-                        DAC1RDAT = BufferB[i];
+                    {
+                        FIR(NUM_SAMPLES, &output_signal[0], &BufferB[0], &FIRfilter);
+                        DAC_RIGHT_CH_OUT = BufferB[i];
+                    }
             }
             adc_finished = 0;
         }

@@ -204,6 +204,9 @@
 #define FIFO_EMPTY                  1
 #define FIFO_NOT_FULL               0
 
+// Conversion finished
+#define DAC_RIGHT_CH_EMPTY          (DAC1STATbits.REMPTY == 1)
+
 /*******************************************************************************
  * DAC1 Default and output data registers
  ******************************************************************************/

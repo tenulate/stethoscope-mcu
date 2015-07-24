@@ -4,10 +4,10 @@
 // Map MCU pins to logical names
 #define LED_PIN             LATBbits.LATB14
 #define LED_PIN_DIR         TRISBbits.TRISB14
-#define LED_PIN_MODE        AD1PCFGLbits.PCFG10
+#define LED_PIN_TYPE        AD1PCFGLbits.PCFG10
 
 #define ADC_PIN_DIR         TRISAbits.TRISA0
-#define ADC_PIN_MODE        AD1PCFGLbits.PCFG0
+#define ADC_PIN_TYPE        AD1PCFGLbits.PCFG0
 
 // Digital/Analog settings
 #define ANALOG              0

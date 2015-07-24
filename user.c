@@ -8,10 +8,10 @@
 void initApp(void)
 {
     /* Setup analog functionality and port direction */
-    LED_PIN_MODE = DIGITAL; // Pin 25 is digital
+    LED_PIN_TYPE = DIGITAL; // Pin 25 is digital
     LED_PIN_DIR = OUTPUT;   // Pin 23 output
     ADC_PIN_DIR = INPUT;    // Pin 2 input
-    ADC_PIN_MODE = ANALOG;  // Pin 2 analog
+    ADC_PIN_TYPE = ANALOG;  // Pin 2 analog
     
     // Route UART1 TX through RP7 (pin 16)
     // PPSUnLock;

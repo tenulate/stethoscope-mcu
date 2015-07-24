@@ -9,6 +9,7 @@
       <itemPath>ADC.h</itemPath>
       <itemPath>DMA.h</itemPath>
       <itemPath>DAC.h</itemPath>
+      <itemPath>FIR.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -26,6 +27,7 @@
       <itemPath>ADC.c</itemPath>
       <itemPath>DMA.c</itemPath>
       <itemPath>DAC.c</itemPath>
+      <itemPath>FIR.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -176,6 +178,7 @@
         <property key="symbol-stripping" value=""/>
         <property key="trace-symbols" value=""/>
         <property key="warn-section-align" value="false"/>
+        <appendMe value="--library &quot;dsp&quot;"/>
       </C30-LD>
       <C30Global>
         <property key="common-include-directories" value=""/>
