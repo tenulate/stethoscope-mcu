@@ -27,7 +27,7 @@ int main(void)
     extern fractional BufferB[NUM_SAMPLES];
     extern int adc_finished;
     extern unsigned int DMA_buffer;
-    int i;
+    int buff_index;     // to count through BufferA/BufferB
     
     // Set up filtering
     extern fractional coefficients[FILTER_ORDER];
@@ -36,27 +36,42 @@ int main(void)
     FIRStruct FIRfilter;
     FIRStructInit(&FIRfilter, FILTER_ORDER, coefficients, 0xFF00, xdelay);
     FIRDelayInit(&FIRfilter);
+    int block_filtered=0;  // To determine if filter has been applied to block
     
     while(INFINITE_LOOP)
     {
         LED_ON;
+
+        if (!block_filtered)
+        {
+            switch (DMA_buffer)
+            {
+              case BUFFER_B:
+                FIR(NUM_SAMPLES, &output_signal[0], &BufferB[0], &FIRfilter);
+                break;
+              case BUFFER_A:
+                FIR(NUM_SAMPLES, &output_signal[0], &BufferA[0], &FIRfilter);
+                break;
+            }
+            block_filtered = 1;
+        }
+
         if (adc_finished)
         {
-            for (i=0; i<NUM_SAMPLES; i++)
+            for (buff_index=0; buff_index<NUM_SAMPLES; buff_index++)
             {
                 while(!DAC_RIGHT_CH_EMPTY);    // Wait D/A conversion
                     if (DMA_buffer == BUFFER_A)
                     {
-                        FIR(NUM_SAMPLES, &output_signal[0], &BufferA[0], &FIRfilter);
-                        DAC_RIGHT_CH_OUT = BufferA[i];
+                        DAC_RIGHT_CH_OUT = output_signal[buff_index];
                     }
                     else
                     {
-                        FIR(NUM_SAMPLES, &output_signal[0], &BufferB[0], &FIRfilter);
-                        DAC_RIGHT_CH_OUT = BufferB[i];
+                        DAC_RIGHT_CH_OUT = output_signal[buff_index];
                     }
             }
             adc_finished = 0;
+            block_filtered = 0;
         }
     }
 }
