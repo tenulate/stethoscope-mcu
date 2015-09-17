@@ -8,8 +8,8 @@
 void initApp(void)
 {
     /* Setup analog functionality and port direction */
-    LED_PIN_TYPE = DIGITAL; // Pin 25 is digital
-    LED_PIN_DIR = OUTPUT;   // Pin 23 output
+    LED_PIN_TYPE = DIGITAL; // Pin 18 is digital
+    LED_PIN_DIR = OUTPUT;   // Pin 18 output
     ADC_PIN_DIR = INPUT;    // Pin 2 input
     ADC_PIN_TYPE = ANALOG;  // Pin 2 analog
     

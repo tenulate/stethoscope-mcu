@@ -2,8 +2,8 @@
 #define USER_H
 
 // Map MCU pins to logical names
-#define LED_PIN             LATBbits.LATB14
-#define LED_PIN_DIR         TRISBbits.TRISB14
+#define LED_PIN             LATBbits.LATB9
+#define LED_PIN_DIR         TRISBbits.TRISB9
 #define LED_PIN_TYPE        AD1PCFGLbits.PCFG10
 
 #define ADC_PIN_DIR         TRISAbits.TRISA0
