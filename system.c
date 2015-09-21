@@ -30,7 +30,7 @@ void configureOscillator(void)
     // Configure PLL prescaler, PLL postscaler, PLL divisor
     PLLFBDbits.PLLDIV = M-2;        // PLL multiplying factor from Fref to Fvco
     CLKDIVbits.PLLPOST = N2/2-1;    // PLL division factor from Fvco to Fosc
-    CLKDIVbits.PLLPRE= N1-2;        // PLL division from Fin to Fref
+    CLKDIVbits.PLLPRE= N1-2;        // PLL division from Fin to Fref 
     // Initiate Clock Switch to Internal FRC with PLL (NOSC = 0b001)
     __builtin_write_OSCCONH(0x01);
     __builtin_write_OSCCONL(OSCCON | 0x01);

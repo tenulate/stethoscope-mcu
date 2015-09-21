@@ -1,6 +1,10 @@
 #ifndef ADC_H
 #define	ADC_H
 
+// Sampling settings
+#define Fs  48000           // Sampling frequency (Hz)
+#define Ts  (FCY/Fs)-1      // sampling period - instruction cycles per sample
+
 /*******************************************************************************
  * ADC Interrupt Flags and registers
  * ****************************************************************************/
@@ -223,5 +227,6 @@
  ******************************************************************************/
 
 void initADC(void);         // Analog-to-Digital conversion initialisation
+void initTimer3(void);      // Initialise TIMER 3
 
 #endif	/* ADC_H */

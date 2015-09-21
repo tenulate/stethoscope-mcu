@@ -1,7 +1,7 @@
 #ifndef FIR_H
 #define	FIR_H
 
-#define FILTER_ORDER    37
+#define FILTER_ORDER    34
 
 
 

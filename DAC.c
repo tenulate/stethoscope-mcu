@@ -10,16 +10,16 @@ void initDAC(void)
   AUX_CLK_INPUT = PLL_OUTPUT;
   AUX_OSC_MODE = INTERNAL_PLL;
   AUX_CLK_OUTPUT = AUX_IN_DIVIDE_BY_1;
+  // F_AUX = Fvco = 147.456 MHz
   
   // Set up DAC module
   ENABLE_RIGHT_DAC_CHANNEL;
-  DAC_DEFAULT_DATA = 0x0000;
-  DAC_CLK = AUX_OUT_DIV_BY_9;
+  DAC_DEFAULT_DATA = 0x8000;
+  DAC_CLK = AUX_OUT_DIV_BY_12;
+  // F_DACCLK = F_AUX / 12 = 147.456 / 12 = 12.288 MHz
+  // F_DAC sampling = F_DACCLK / 256 = 12.288 MHz / 256 = 48,000 Hz
   DAC_DATA_FORMAT = DAC_SIGNED_INT;
   DAC_OUTPUT_AMPLIFIER = DAC_DISABLE_WHILE_SLEEP;
-  // Fs(DAC) = Fcy / (64*APSTSCLR*DACFDIV)
-  //         = (79841667/2) / (64*9*1)
-  //         = 69.307 kHz
   
   // Disable DAC interrupts - let DMA take care of it
   CLEAR_DAC_RIGHT_CH_INTERRUPT_FLAG;

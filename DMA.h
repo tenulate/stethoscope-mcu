@@ -8,7 +8,7 @@
 // Using DMA Channel 4 (arbitrarily, could be anything between 0-7)
 /* Number of samples to transfer from ADC to DMA before block is 'complete', ie.
    DMA interrupt is raised */
-#define NUM_SAMPLES 23
+#define NUM_SAMPLES 34
 
 // Enabling/disabling 
 #define DMA_ADC_ENABLE              DMA4CONbits.CHEN = 1

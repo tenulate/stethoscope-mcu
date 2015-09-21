@@ -19,6 +19,7 @@ int main(void)
     /* Initialize IO ports and peripherals */
     initApp();
     initADC();
+    initTimer3();
     initDAC();
     initADC_DMA();
 
@@ -41,9 +42,30 @@ int main(void)
     while(INFINITE_LOOP)
     {
         LED_ON;
-
-        if (!block_filtered)
+        if (adc_finished)
         {
+            LED_OFF;
+            for (buff_index=0; buff_index<NUM_SAMPLES; buff_index++)
+            {
+                while(!DAC_RIGHT_CH_EMPTY);    // Wait D/A conversion
+                    if (DMA_buffer == BUFFER_A)
+                    {
+                        // DAC_RIGHT_CH_OUT = output_signal[buff_index];
+                        DAC_RIGHT_CH_OUT = output_signal[buff_index];
+                    }
+                    else
+                    {
+                        // DAC_RIGHT_CH_OUT = output_signal[buff_index];
+                        DAC_RIGHT_CH_OUT = output_signal[buff_index];
+                    }
+            }
+            adc_finished = 0;
+            block_filtered = 0;
+            LED_ON;
+        }
+        
+        if (!block_filtered)
+        {  
             switch (DMA_buffer)
             {
               case BUFFER_B:
@@ -54,24 +76,6 @@ int main(void)
                 break;
             }
             block_filtered = 1;
-        }
-
-        if (adc_finished)
-        {
-            for (buff_index=0; buff_index<NUM_SAMPLES; buff_index++)
-            {
-                while(!DAC_RIGHT_CH_EMPTY);    // Wait D/A conversion
-                    if (DMA_buffer == BUFFER_A)
-                    {
-                        DAC_RIGHT_CH_OUT = output_signal[buff_index];
-                    }
-                    else
-                    {
-                        DAC_RIGHT_CH_OUT = output_signal[buff_index];
-                    }
-            }
-            adc_finished = 0;
-            block_filtered = 0;
         }
     }
 }

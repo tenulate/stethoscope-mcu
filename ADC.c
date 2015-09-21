@@ -1,4 +1,5 @@
 #include "ADC.h"
+#include "system.h"     // for FCY definition
 #include <xc.h>
 
 /*******************************************************************************
@@ -13,7 +14,7 @@ void initADC()
     DMA_BUFFER_WRITE_ORDER = SCATTER_GATHER;
     ADC_NUMBER_BITS = ADC_12_BITS;
     ADC_DATA_FORMAT = ADC_SIGNED_FRACT;
-    ADC_SAMPLE_CONVERSION_TRIGGER = AUTO_CONVERT;
+    ADC_SAMPLE_CONVERSION_TRIGGER = TIMER_3;
     ADC_SIMULTANEOUS_SAMP = SEQUENTIAL;
     ADC_SAMPLING_START = AFTER_LAST_CONVERSION;
     
@@ -48,5 +49,16 @@ void initADC()
     CLEAR_ADC_INTERRUPT_FLAG;
     DISABLE_ADC_INTERRUPT;
     
-    ENABLE_ADC; 
+    ENABLE_ADC;
+}
+/*******************************************************************************
+ * Initialise TIMER 3 to trigger ADC interrupts
+ ******************************************************************************/
+void initTimer3()
+{
+    TMR3 = 0x0000; // Clear TMR3
+    PR3 = Ts; // Load period value in PR3
+    IFS0bits.T3IF = 0; // Clear Timer 3 Interrupt Flag
+    IEC0bits.T3IE = 0; // Clear Timer 3 interrupt enable bit
+    T3CONbits.TON = 1; // Enable Timer 3
 }
