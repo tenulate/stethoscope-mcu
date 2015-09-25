@@ -39,6 +39,14 @@ int main(void)
     FIRDelayInit(&FIRfilter);
     int block_filtered=0;  // To determine if filter has been applied to block
     
+    // apply gain to filter coefficients
+    int i;
+    float gain = 0.2;
+    // int gain = 4;
+    for(i=0; i<FILTER_ORDER; i++) {
+        coefficients[i] = coefficients[i] * gain;
+    }
+    
     while(INFINITE_LOOP)
     {
         LED_ON;
